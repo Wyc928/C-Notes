@@ -1,0 +1,26 @@
+1、以下文件需要改名（wrong->right）：.sln、.vcxproj、.filters、.user、.json(Qtplugin自动生成)、工程所在文件夹、wrong.h、wrong.cpp;
+
+
+
+2、以下文件需要通过文本编辑器打开修改内容（wrong->right）：.sln、.vcxproj、.json(Qtplugin自动生成);
+
+3、以下文件需要全部删除：moc的生成目录所在的文件夹、.suo;
+
+
+
+4、在VS2015中重新打开工程，移除.h，.cpp，再把移除的添加现有项添加进来（目的是为了重新生成moc文件），然后Ctrl+F，把代码中出现的wrong全部改为right（主要是类名、引用的头文件），重新编译一下就可以了;
+
+5、更改属性中的：
+常规
+
+VC++目录中的包含目录和库目录
+C/C++常规的：附加包含目录：D:\EyeTracking\boost_1_69_0;%(AdditionalIncludeDirectories)
+                    调试信息格式要改
+          优化的：优化->速度最大化/O2  等等
+链接器的输入：常规、附加依赖项、优化：引用，是；启用Comdat折叠，是
+
+问题：
+D8016	“/ZI”和“/GL”命令行选项不兼容
+解决方法：
+C/C++常规的：调试信息格式->Zi
+
